@@ -51,7 +51,7 @@ const providerDefectHandoffCanonicalPath = "skills/_shared/provider-defect-repor
 const providerDefectStubPointer = "When a Gentle AI invocation produced it, read `_shared/provider-defect-report.md` from the runtime's installed skills directory and follow it before any report, consent prompt, or GitHub operation."
 
 var blockingPromptRoutes = map[string]blockingPromptRoute{
-	"antigravity/orchestrator.md": {},
+	"antigravity/orchestrator.md": {nativeTool: "`ask_question`"},
 	"claude/orchestrator.md":      {nativeTool: "`AskUserQuestion`"},
 	"codex/orchestrator.md":       {},
 	"cursor/orchestrator.md":      {},
@@ -192,6 +192,7 @@ func TestNativeBlockingPromptRulesRetainInteractiveUIWithFailClosedFallback(t *t
 		path string
 		tool string
 	}{
+		{name: "Antigravity", path: "antigravity/orchestrator.md", tool: "`ask_question`"},
 		{name: "Claude", path: "claude/orchestrator.md", tool: "`AskUserQuestion`"},
 		{name: "OpenCode", path: "opencode/orchestrator.md", tool: "`question`"},
 	}
